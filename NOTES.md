@@ -20,3 +20,24 @@ when formatting with f-strings — got a TypeError trying to format a whole arra
 a float.
 
 **Time spent:** ~1.5 hours
+
+## L12 — broadcasting-drill
+
+**What I built:** Normalized a 100x5 matrix both column-wise and row-wise
+(subtract mean, divide by std) using pure NumPy broadcasting — no loops.
+
+**What I learned:**
+- Broadcasting compares shapes right-to-left; dimensions must either match
+  or one of them must be 1
+- Column-wise normalization "just works": (100,5) and (5,) broadcast fine,
+  because the last dimension matches (5 == 5)
+- Row-wise normalization fails by default: (100,5) and (100,) don't broadcast,
+  because comparing right-to-left gives 5 vs 100 — no match
+- Fix: use keepdims=True when computing mean/std along axis=1, turning shape
+  (100,) into (100, 1) — now broadcasting works because 1 is a special
+  "stretch to fit" value
+
+**Where I got stuck:** Forgot keepdims when normalizing by rows, got
+`ValueError: operands could not be broadcast together with shapes (100,5) (100,)`
+
+**Time spent:** ~60 minutes
