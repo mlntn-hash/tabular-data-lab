@@ -41,3 +41,27 @@ a float.
 `ValueError: operands could not be broadcast together with shapes (100,5) (100,)`
 
 **Time spent:** ~60 minutes
+
+## L13 — image-as-array
+
+**What I built:** Loaded an image via PIL, converted it to a NumPy array,
+implemented greyscale conversion (luminance formula), 90° rotation, and a
+manual 3x3 box-blur convolution — all without built-in PIL filters.
+
+**What I learned:**
+- An image is just a NumPy array: shape (height, width, 3) for RGB —
+  PIL reports size as (width, height), NumPy reports shape as (height, width, channels)
+  — opposite order, a common source of confusion
+- Greyscale isn't a simple average of R,G,B — the standard luminance formula
+  weights channels differently (0.299*R + 0.587*G + 0.114*B) because the eye
+  perceives green as brighter than blue at the same intensity
+- Convolution = sliding a small kernel (3x3) over the image, multiplying
+  element-wise and summing, to compute each output pixel from its neighborhood
+- Edge pixels need special handling (no full 3x3 neighborhood available) —
+  here just skipped/left at 0 for simplicity; real libraries use padding
+
+**Where I got stuck:** Renamed the loop variable from `i` to `y` in the outer
+loop but forgot to update it inside the loop body — got `NameError: name 'i'
+is not defined`. Reminder: loop variable name must match everywhere it's used.
+
+**Time spent:** ~40 minutes
