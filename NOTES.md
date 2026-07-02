@@ -65,3 +65,31 @@ loop but forgot to update it inside the loop body — got `NameError: name 'i'
 is not defined`. Reminder: loop variable name must match everywhere it's used.
 
 **Time spent:** ~40 minutes
+
+## L14 — pandas-warmup
+
+**What I built:** Loaded Titanic dataset, explored structure with .info()
+and .describe(), computed survival rates by sex, class, age group,
+and sex+class combination using groupby + agg.
+
+**What I learned:**
+- groupby splits the dataframe into buckets by unique values,
+  agg computes multiple aggregations at once (mean/count/sum)
+- mean of a 0/1 column = survival rate directly
+- pd.cut creates categorical bins from a numeric column
+- groupby with a list of columns creates multi-level groups
+- observed=True needed when grouping by pd.Categorical/pd.cut columns
+- NaN values in Age (177 of 891) automatically drop from groupby —
+  need to mention this in analysis conclusions
+
+**Key findings:**
+- Women survived at 74%, men at 19%
+- 1st class: 63%, 2nd: 47%, 3rd: 24%
+- Children (58%) survived more than seniors (23%)
+- Women in 3rd class (50%) survived more than men in 1st class (37%)
+  — gender mattered more than social class
+
+**Where I got stuck:** Passed two separate string arguments to groupby
+instead of a list — groupby(["A", "B"]), not groupby("A", "B")
+
+**Time spent:** ~30 minutes
