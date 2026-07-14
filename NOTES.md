@@ -93,3 +93,21 @@ and sex+class combination using groupby + agg.
 instead of a list — groupby(["A", "B"]), not groupby("A", "B")
 
 **Time spent:** ~30 minutes
+
+## L15 — pivot-melt
+
+**What I built:** Created sample data in long format (user_id, date, metric, value),
+converted to wide format via pivot_table, then back to long via melt.
+
+**What I learned:**
+- Long format: one row per observation — good for groupby, charts, databases
+- Wide format: one row per entity, metrics as columns — good for ML, reports
+- pivot_table: index = row keys, columns = what becomes new columns,
+  values = what fills the cells, aggfunc = how to handle duplicates
+- melt: reverse of pivot — id_vars stay, value_vars fold into rows
+- NaN appears in wide format when a combination doesn't exist in the original data
+- dropna needed after melt to remove those artificial NaN rows
+
+**Where I got stuck:** —
+
+**Time spent:** ~20 minutes
