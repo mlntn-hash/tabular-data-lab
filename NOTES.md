@@ -111,3 +111,11 @@ converted to wide format via pivot_table, then back to long via melt.
 **Where I got stuck:** —
 
 **Time spent:** ~20 minutes
+
+## Task 16 — Time Series Resample
+
+- Converted a string datetime column to `datetime` using `pd.to_datetime()`.
+- Set the datetime column as a `DatetimeIndex`.
+- Used `resample("5min").ohlc()` to aggregate 1-minute tick data into 5-minute OHLC candles.
+- Learned that `resample()` works only with a `DatetimeIndex`.
+- Time spent: 20 min.
